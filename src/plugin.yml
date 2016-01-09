@@ -1,0 +1,10 @@
+name: Reporter
+main: com.daansander.reporter.Reporter
+version: 1.0
+commands:
+   report:
+      description: Report a player.
+      usage: /<command>
+   reports:
+      description: List of reports.
+      usage: /<command>

@@ -1,0 +1,16 @@
+#The messages that will be send to the player when he reports someone
+#You can use color codes by using &
+no-permission: "&cYou do not have enough permissions"
+message-report: "&cReported the player &6%target% with the reason: &6%reason%"
+message-adminnote: "&6%target% &chas been reported with the reason: &6%reason%"
+message-checkreport: "&cReported by &6%reporter% &cwith reason: &6%reason%"
+cooldown-message: "&cYou cant report for &6%time% &cseconds!"
+use-uuid: true
+mysql: false
+mysql-host: 0.0.0.0
+mysql-port: 3306
+mysql-db: reporter
+mysql-username: admin
+mysql-password: root
+#mysql-use-uuid: false
+cooldown: 20

@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="Reporter">
+    <output-path>$USER_HOME$/Desktop/Sushi Server/plugins</output-path>
+    <root id="archive" name="Reporter.jar">
+      <element id="module-output" name="Reporter-Reloaded" />
+    </root>
+  </artifact>
+</component>
