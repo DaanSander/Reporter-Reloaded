@@ -31,12 +31,15 @@ public class Reporter extends JavaPlugin {
         saveDefaultConfig();
 
         reports = new Config("reports");
-        reportSql = new ReportSql();
-
-        reportSql.connect();
 
         useUUID = getConfig().getBoolean("use-uuid");
         useMySql = getConfig().getBoolean("mysql");
+
+        if(useMySql) {
+            reportSql = new ReportSql();
+
+            reportSql.connect();
+        }
 
         getCommand("report").setExecutor(new ReportCommand());
         getCommand("reports").setExecutor(new ReportsCommand());

@@ -1,9 +1,7 @@
 package com.daansander.reporter.command;
 
-import com.daansander.reporter.Report;
 import com.daansander.reporter.Reporter;
 import com.daansander.reporter.utils.UUIDFetcher;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -18,23 +16,28 @@ import java.util.UUID;
 public class ReportsCommand implements CommandExecutor {
 
 
+    public static void main(String[] args) {
+        boolean b = ("all".equalsIgnoreCase("all")) ? true : false;
+        System.out.println(b);
+    }
+
     @Override
     public boolean onCommand(CommandSender sender, Command command, String s, String[] args) {
-        if(command.getName().equalsIgnoreCase("reports") && sender instanceof Player) {
+        if (command.getName().equalsIgnoreCase("reports") && sender instanceof Player) {
             Player player = (Player) sender;
 
-            if(!player.hasPermission("reporter.reports")) {
+            if (!player.hasPermission("reporter.reports")) {
                 player.sendMessage(Reporter.getPlugin().getConfig().getString("no-permission").replaceAll("&", "§"));
                 return true;
             }
-            if(args.length != 3) {
+            if (args.length != 3) {
                 sender.sendMessage(ChatColor.RED + "Insufficient arguments usage /reports <all | player>");
                 return true;
             }
 
             boolean b = (args[0].equalsIgnoreCase("all")) ? true : false;
 
-            if(Reporter.getPlugin().useMySql) {
+            if (Reporter.getPlugin().useMySql) {
                 if (b) {
                     Reporter.getPlugin().sendList(player, Reporter.getPlugin().reportSql.getAllReports(), Integer.parseInt(args[1]), Integer.parseInt(args[2]));
 
@@ -43,7 +46,7 @@ public class ReportsCommand implements CommandExecutor {
 
                     UUID uuid = UUIDFetcher.getUUID(args[0]);
 
-                    if(uuid == null) {
+                    if (uuid == null) {
                         player.sendMessage(ChatColor.DARK_RED + "The player does not exist");
                         return true;
                     }
@@ -53,13 +56,13 @@ public class ReportsCommand implements CommandExecutor {
                     return true;
                 }
             } else {
-                if(b) {
+                if (b) {
                     player.sendMessage(ChatColor.RED + "Im sorry the setting 'all' is not available with configurations at the moment");
                     return true;
                 } else {
                     UUID uuid = UUIDFetcher.getUUID(args[0]);
 
-                    if(uuid == null) {
+                    if (uuid == null) {
                         player.sendMessage(ChatColor.DARK_RED + "The player does not exist");
                         return true;
                     }
@@ -70,10 +73,5 @@ public class ReportsCommand implements CommandExecutor {
 
         }
         return true;
-    }
-
-    public static void main(String[] args) {
-        boolean b = ("all".equalsIgnoreCase("all")) ? true : false;
-        System.out.println(b);
     }
 }
